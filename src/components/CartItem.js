@@ -1,8 +1,10 @@
 import React from "react";
 import {MdDelete} from 'react-icons/md'
 import {BiPlus, BiMinus} from 'react-icons/bi'
+import { useGlobalContext } from "../context/context";
 
 const CartItem = ({_id, name, image, price, countInStock}) => {
+
   return (
     <article className="cart-item">
       <div className="img-container">
