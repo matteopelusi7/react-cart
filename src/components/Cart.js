@@ -4,6 +4,7 @@ import CartItem from './CartItem'
 import {MdRemoveShoppingCart} from 'react-icons/md'
 
 const Cart = () => {
+
   return (
     <section className="section-center" style={{marginTop: '2rem'}}>
       <div className="cart-info">
