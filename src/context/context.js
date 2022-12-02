@@ -1,6 +1,6 @@
 import React, { useContext, useReducer, useEffect } from "react";
 import reducer from "./reducer";
-import { DATA_FETCHING_FAIL, DATA_FETCHING_STARTED, DATA_FETCHING_SUCCESS, DELETE_ITEM, SVUOTA_CARRELLO } from "./actions";
+import { AUMENTA_QTY, DATA_FETCHING_FAIL, DATA_FETCHING_STARTED, DATA_FETCHING_SUCCESS, DELETE_ITEM, DIMINUISCI_QTY, SVUOTA_CARRELLO } from "./actions";
 import axios from 'axios';
 const url = "https://react--course-api.herokuapp.com/api/v1/data/cart";
 
@@ -24,10 +24,17 @@ const AppProvider = ({children}) => {
         dispatch({type: DELETE_ITEM, payload: _id})
     }
 
-
     //svuota carrello
     const deleteAll = () => {
         dispatch({type: SVUOTA_CARRELLO})
+    }
+
+    const addQty = (_id) => {
+        dispatch({type: AUMENTA_QTY, payload: _id})
+    }
+
+    const dimQty = (_id) => {
+        dispatch({type: DIMINUISCI_QTY, payload: _id})
     }
 
     //data fetching
@@ -48,7 +55,9 @@ const AppProvider = ({children}) => {
             value={{
                 ...state,
                 deleteItem,
-                deleteAll
+                deleteAll,
+                addQty,
+                dimQty
             }}
         >
             {children}
