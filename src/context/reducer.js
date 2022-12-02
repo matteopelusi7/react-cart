@@ -1,4 +1,4 @@
-import {DATA_FETCHING_FAIL, DATA_FETCHING_SUCCESS, DATA_FETCHING_STARTED, AUMENTA_QTY, DIMINUISCI_QTY, SVUOTA_CARRELLO, DELETE_ITEM} from './actions'
+import {DATA_FETCHING_FAIL, DATA_FETCHING_SUCCESS, DATA_FETCHING_STARTED, AUMENTA_QTY, DIMINUISCI_QTY, SVUOTA_CARRELLO, DELETE_ITEM, COSTO_TOTALE, CONTATORE} from './actions'
 
 const reducer = (state, {type, payload}) => {
     if(type === DATA_FETCHING_STARTED) {
@@ -38,6 +38,22 @@ const reducer = (state, {type, payload}) => {
                 } 
                 return {...el}
             })
+        }
+    }
+    if(type === COSTO_TOTALE) {
+        return {
+            ...state,
+            total: state.products.reduce((total, item) => {
+                return total + item.qty * item.price;
+            }, 0)
+        }
+    }
+    if(type === CONTATORE) {
+        return {
+            ...state,
+            itemCounter: state.products.reduce((total, item) => {
+                return total + item.qty;
+            }, 0)
         }
     }
     return state;

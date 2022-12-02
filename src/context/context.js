@@ -1,6 +1,6 @@
 import React, { useContext, useReducer, useEffect } from "react";
 import reducer from "./reducer";
-import { AUMENTA_QTY, DATA_FETCHING_FAIL, DATA_FETCHING_STARTED, DATA_FETCHING_SUCCESS, DELETE_ITEM, DIMINUISCI_QTY, SVUOTA_CARRELLO } from "./actions";
+import { AUMENTA_QTY, COSTO_TOTALE, CONTATORE, DATA_FETCHING_FAIL, DATA_FETCHING_STARTED, DATA_FETCHING_SUCCESS, DELETE_ITEM, DIMINUISCI_QTY, SVUOTA_CARRELLO } from "./actions";
 import axios from 'axios';
 const url = "https://react--course-api.herokuapp.com/api/v1/data/cart";
 
@@ -49,6 +49,13 @@ const AppProvider = ({children}) => {
         }
       })()
     }, [])
+
+
+    //aggiorna costo totale e numero elemnto nel carrello
+    useEffect(() => {
+        dispatch({ type: COSTO_TOTALE });
+        dispatch({ type: CONTATORE });
+    }, [state.products]);
     
     return (
         <AppContext.Provider

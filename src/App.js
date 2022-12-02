@@ -7,7 +7,8 @@ import CartItem from "./components/CartItem";
 
 function App() {
 
-  const {isLoading, products} = useGlobalContext()
+  const {isLoading, products, total} = useGlobalContext()
+
   if(isLoading) {
     return (
       <div className="App">
@@ -28,7 +29,7 @@ function App() {
           <h4>Nessun prodotto nel carrello</h4>
         </div>
       )}
-      <TotalBox />
+      {total > 0 && <TotalBox />}
     </div>
   );
 }
