@@ -5,7 +5,7 @@ import { useGlobalContext } from "../context/context";
 
 const Cart = () => {
 
-  const {products} = useGlobalContext()
+  const {products, deleteAll} = useGlobalContext()
 
   return (
     <section className="section-center" style={{marginTop: '2rem'}}>
@@ -14,7 +14,7 @@ const Cart = () => {
         <h6 className="prd-name">Nome</h6>
         <h6>Qty</h6>
         <h6>Prezzo</h6>
-        <button className="btn icon-btn">
+        <button className="btn icon-btn" onClick={deleteAll}>
           <MdRemoveShoppingCart className="icon minus-icon" />
         </button>
       </div>

@@ -5,6 +5,8 @@ import { useGlobalContext } from "../context/context";
 
 const CartItem = ({_id, name, image, price, countInStock}) => {
 
+  const {deleteItem} = useGlobalContext()
+
   return (
     <article className="cart-item">
       <div className="img-container">
@@ -23,7 +25,7 @@ const CartItem = ({_id, name, image, price, countInStock}) => {
         </button>
       </div>
       <p>{price} &euro;</p>
-      <button className="btn icon-btn">
+      <button className="btn icon-btn" onClick={()=> deleteItem(_id)}>
         <MdDelete className="icon minus-icon" />
       </button>
     </article>

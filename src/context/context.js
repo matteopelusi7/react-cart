@@ -1,6 +1,6 @@
 import React, { useContext, useReducer, useEffect } from "react";
 import reducer from "./reducer";
-import { DATA_FETCHING_FAIL, DATA_FETCHING_STARTED, DATA_FETCHING_SUCCESS } from "./actions";
+import { DATA_FETCHING_FAIL, DATA_FETCHING_STARTED, DATA_FETCHING_SUCCESS, DELETE_ITEM, SVUOTA_CARRELLO } from "./actions";
 import axios from 'axios';
 const url = "https://react--course-api.herokuapp.com/api/v1/data/cart";
 
@@ -19,6 +19,17 @@ const AppProvider = ({children}) => {
     //utilizzo use reducer con state iniziale
     const [state, dispatch] = useReducer(reducer, initialState)
 
+    //cancella item
+    const deleteItem = (_id) => {
+        dispatch({type: DELETE_ITEM, payload: _id})
+    }
+
+
+    //svuota carrello
+    const deleteAll = () => {
+        dispatch({type: SVUOTA_CARRELLO})
+    }
+
     //data fetching
     useEffect(() => {
       (async() => {
@@ -33,7 +44,13 @@ const AppProvider = ({children}) => {
     }, [])
     
     return (
-        <AppContext.Provider value={{...state}}>
+        <AppContext.Provider
+            value={{
+                ...state,
+                deleteItem,
+                deleteAll
+            }}
+        >
             {children}
         </AppContext.Provider>
     );
